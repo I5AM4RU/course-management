@@ -1,11 +1,13 @@
 import unittest
+import os
 from flask import current_app
 from app import create_app
 
 class AppTest(unittest.TestCase):
     
     def setUp(self):
-        self.app = create_app('config.TestConfig')
+        os.environ["FLASK_CONTEXT"] = "testing"
+        self.app = create_app()
         self.app_context = self.app.app_context()
         self.app_context.push()
         
