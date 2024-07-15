@@ -21,6 +21,7 @@ def create_app():
     
     from app.models.userData import UserData
     from app.models.user import User
+    from app.models.role import Role
     
     @app.shell_context_processor
     def ctx():
