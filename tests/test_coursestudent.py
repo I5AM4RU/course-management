@@ -32,7 +32,7 @@ class TestCourseUserModel(unittest.TestCase):
         db.session.add(course_user)
         db.session.commit()
         
-        fetched_course_user = CourseUser.query.filter_by(name = "test-course").first()
+        fetched_course_user = CourseUser.query.filter_by(course_id = course.id).first()
         self.assertIsNotNone(fetched_course_user)
         self.assertEqual(fetched_course_user.course_id, course.id)
         self.assertEqual(fetched_course_user.user_id, user.id)
