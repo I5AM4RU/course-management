@@ -19,7 +19,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     
-    from app.models.userData import UserData
+    from app.models.user_data import UserData
     from app.models.user import User
     from app.models.role import Role
     from app.models.profile import Profile

@@ -1,7 +1,7 @@
 import unittest
 import os
 from app import create_app, db
-from app.models.userData import UserData
+from app.models.user_data import UserData
 
 class TestUserDataModel(unittest.TestCase):
     
