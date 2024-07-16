@@ -48,3 +48,17 @@ def create_user():
     db.session.commit()
     
     return jsonify({"message": "User registered successfully", "id": user.id}), 201
+
+@user_bp.route("/users", methods = ["GET"])
+def get_all_users():
+    users = User.query.all()
+    users_list = []
+    for user in users:
+        data = {
+            "id" : user.id,
+            "email" : user.email,
+            "first_name" : user.userdata.first_name,
+            "last_name" : user.userdata.last_name
+        }
+        users_list.append(data)
+    return jsonify({"users": users_list}), 200
