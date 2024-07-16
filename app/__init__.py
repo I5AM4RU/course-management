@@ -15,6 +15,10 @@ def create_app():
     config_object = factory(app_context if app_context else "development")
     app.config.from_object(config_object)
     
+    #Blueprints
+    from app.resources.users import user_bp
+    app.register_blueprint(user_bp)
+    
     ma.init_app(app)
     db.init_app(app)
     migrate.init_app(app, db)
