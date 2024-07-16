@@ -11,3 +11,5 @@ __pycache__/
 
 migrations/versions/
 instance/
+
+.http
