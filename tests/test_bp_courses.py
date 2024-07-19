@@ -39,6 +39,24 @@ class TestCourseBP(unittest.TestCase):
         self.assertIsNotNone(created_course)
         self.assertEqual(created_course.name, "test")
         self.assertEqual(created_course.id, created_course_id)
+        
+    def test_get_all_courses(self):
+        course1 = Course(name = "course1")
+        course2 = Course(name = "course2")
+        db.session.add(course1)
+        db.session.add(course2)
+        db.session.commit()
+        
+        response = self.client.get("/courses")
+        
+        self.assertEqual(response.status_code, 200)
+        courses = response.json["courses"]
+        
+        self.assertIsNotNone(courses)
+        
+        courses_names = [course["name"] for course in courses]
+        self.assertIn("course1", courses_names)
+        self.assertIn("course2", courses_names)
     
     def test_update_course(self):
         course = Course(name = "test")
