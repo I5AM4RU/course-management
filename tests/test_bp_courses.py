@@ -95,7 +95,7 @@ class TestCourseBP(unittest.TestCase):
         response = self.client.delete(f"/courses/{course_id}")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["message"], "Course deleted successfully"), 200
-        course_deleted = Course.query.filter_by(id = course_id)
+        course_deleted = Course.query.filter_by(id = course_id).first()
         self.assertIsNone(course_deleted)
     
 if __name__ == "__main__":
