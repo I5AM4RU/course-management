@@ -49,7 +49,7 @@ class TestCourseBP(unittest.TestCase):
             "name": "updated"
         }
         course_id = course.id
-        response = self.client.put(f"/course/{course_id}", json = data)
+        response = self.client.put(f"/courses/{course_id}", json = data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json["message"], "Course updated successfully"), 200
         
