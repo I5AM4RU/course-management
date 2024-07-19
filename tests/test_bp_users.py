@@ -76,11 +76,10 @@ class TestUserBP(unittest.TestCase):
         db.session.commit()
         
         user_id = user.id
-        response = self.client.get("/users/{user_id}")
-        
+        response = self.client.get(f"/users/{user_id}")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json["id"], user_id)
-        self.assertEqual(response.json["email"], "test@gmail.com")
+        self.assertEqual(response.json["user"]["id"], user_id)
+        self.assertEqual(response.json["user"]["email"], "test@gmail.com")
         
 if __name__ == "__main__":
     unittest.main()
