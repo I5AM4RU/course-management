@@ -58,6 +58,17 @@ class TestCourseBP(unittest.TestCase):
         self.assertIn("course1", courses_names)
         self.assertIn("course2", courses_names)
     
+    def test_get_course_by_id(self):
+        course = Course(name = "test")
+        db.session.add(course)
+        db.session.commit()
+        
+        course_id = course.id
+        response = self.client.get(f"/courses/{course_id}")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json["course"]["id"], course_id)
+        self.assertEqual(response.json["course"]["name"], "test")
+    
     def test_update_course(self):
         course = Course(name = "test")
         db.session.add(course)
